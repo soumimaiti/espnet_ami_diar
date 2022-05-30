@@ -1,0 +1,1 @@
+../../../egs2/TEMPLATE/diar1/path.sh
