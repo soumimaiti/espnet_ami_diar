@@ -56,7 +56,9 @@ if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
         #exit 1
     fi
     
-    #local/ami_download.sh ${mic} ${AMI}
+    if [ ! -d data/local/downloads ]; then
+        local/ami_download.sh ${mic} ${AMI}
+    fi
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
@@ -64,15 +66,9 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
     ### But you can utilize Kaldi recipes in most cases
     log "data stage 2: Data preparation"
     
-    # common data prep
-    # split longer meeting filess
-    #local/ami_split.sh data/local/downloads ${AMI}
-    
-    if [ ! -d data/local/downloads ]; then
-        local/ami_text_prep.sh data/local/downloads
+    if [ ! -f data/local/annotations/train.txt ]; then
+        local/ami_text_prep.sh data/local/downloads ${AMI} ${base_mic}
     fi
-    #local/ami_text_prep.sh data/local/downloads ${AMI}
-
     
     # beamforming
     if [ "$base_mic" == "mdm" ]; then

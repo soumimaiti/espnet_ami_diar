@@ -49,7 +49,7 @@ fi
 # the files in the corpora and filter only specific sessions
 # while building segments
 
-find $AMI_DIR -iname "*.Array1-0$MICNUM.wav" | grep -v "long_audio" | sort -u > $tmpdir/wav.flist
+find $AMI_DIR -iname "*.Array1-0$MICNUM.wav" | grep -v "long_audio\|trim" | sort -u > $tmpdir/wav.flist
 
 n=`cat $tmpdir/wav.flist | wc -l`
 echo "In total, $n files were found."

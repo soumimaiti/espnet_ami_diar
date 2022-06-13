@@ -44,7 +44,7 @@ if [ ! -f $SEGS ]; then
 fi
 
 # as the sdm we treat first mic from the array
-find $AMI_DIR -iname "*.Array1-0$MICNUM.wav" | grep -v "long_audio" | sort > $dir/wav.flist
+find $AMI_DIR -iname "*.Array1-0$MICNUM.wav" | grep -v "long_audio\|trim" | sort > $dir/wav.flist
 
 n=`cat $dir/wav.flist | wc -l`
 

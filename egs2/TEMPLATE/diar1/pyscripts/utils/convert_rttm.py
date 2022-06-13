@@ -57,9 +57,10 @@ def convert_rttm_text(
         for linenum, line in enumerate(f, 1):
             sps = re.split("[ \t]+", line.rstrip())
             utt_id, wav_path = sps
-            assert utt_id in utt_ids, "{} is not in corresponding rttm {}".foramt(
-                utt_id, path
-            )
+            #print(utt_id, wav_path, line)
+            #assert utt_id in utt_ids, "{} is not in corresponding rttm {}".format(
+            #    utt_id, path
+            #)
 
             sf = soundfile.SoundFile(wav_path)
             assert sf.samplerate == sampling_rate
